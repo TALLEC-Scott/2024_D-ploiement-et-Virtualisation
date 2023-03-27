@@ -1,8 +1,9 @@
 from typing import Union
 
-from fastapi import FastAPI
+from fastapi import FastAPI, UploadFile
+import numpy as np
 
-from cv2 import cv2
+import cv2
 
 app = FastAPI()
 
