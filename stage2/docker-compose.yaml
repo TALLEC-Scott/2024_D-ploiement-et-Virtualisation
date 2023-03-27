@@ -1,0 +1,10 @@
+services:
+  web:
+    image: test/front
+    build: .
+    mem_limit: 4G
+    mem_reservation: 4G
+    tmpfs:
+      - /tmp:size=100M
+    ports:
+      - "8000:8000"
