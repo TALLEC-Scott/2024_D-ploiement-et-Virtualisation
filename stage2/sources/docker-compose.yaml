@@ -1,0 +1,11 @@
+services:
+  image: nginx
+  mem_limit: 4G
+  mem_reservation: 4G
+  tmpfs:
+    - /tmp:size=100M
+  web:
+    image: test/front
+    build: .
+    ports:
+      - "8000:8000"
