@@ -23,8 +23,7 @@ for image in os.listdir(directory):
     filepath = os.path.join(directory, image)
     if os.path.isfile(filepath) and (filename.endswith(".jpg") or filename.endswith(".jpeg")):
         # Read the document page image.
-        input_image_path = "/data/input/jo-sample1.jpg"
-        image = cv2.imread(input_image_path, 1)
+        image = cv2.imread(filepath, 1)
 
         # Init empty page content. 
         # This object will be updated by the ocr pipeline. id can be any string and it is used to identify the page.

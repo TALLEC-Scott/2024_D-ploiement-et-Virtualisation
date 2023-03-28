@@ -7,6 +7,6 @@ services:
     tmpfs:
       - /tmp:size=100M
     volumes:
-      - $HOST/data/input:$HOST/data/input:ro
-      - $HOST/data/output:$HOST/data/output
+      - ${HOME}/data/input:/data/input:ro
+      - ${HOME}/data/output:/data/output
 
