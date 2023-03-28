@@ -1,0 +1,12 @@
+services:
+  ocr:
+    image: ocr
+    build: .
+    mem_limit: 6G
+    mem_reservation: 6G
+    tmpfs:
+      - /tmp:size=100M
+    volumes:
+      - $HOST/data/input:$HOST/data/input:ro
+      - $HOST/data/output:$HOST/data/output
+
