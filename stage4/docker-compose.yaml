@@ -1,0 +1,10 @@
+services:
+  web:
+    image: ocr_front
+    build: .
+    mem_limit: 6G
+    mem_reservation: 6G
+    tmpfs:
+      - /tmp:size=100M
+    ports:
+      - "8000:8000"
