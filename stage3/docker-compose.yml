@@ -1,3 +1,4 @@
+version: "3.9"
 services:
   ocr:
     image: ocr
@@ -7,6 +8,10 @@ services:
     tmpfs:
       - /tmp:size=100M
     volumes:
-      - ${HOME}/data/input:/home/appuser/data/input:ro
-      - ${HOME}/data/output:/home/appuser/data/output
+        - ~/data/input:/home/appuser/data/input:ro
+        - ~/data/output:/home/appuser/data/output
+    restart: always
+
+#IMPORTANT: YOU NEED TO RUN THE DOCKER COMPOSE UP AS A NORMAL USER NOT SUPER USER
+#otherwise the mount will not work
 
