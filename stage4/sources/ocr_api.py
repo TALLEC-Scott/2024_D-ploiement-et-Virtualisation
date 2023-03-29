@@ -54,26 +54,28 @@ async def process_image(file: UploadFile):
     else:
         raise HTTPException(status_code=500, detail="Cannot find image data in file '" + file.filename + "'.")
 
-        # Init empty page content.
-        # This object will be updated by the ocr pipeline. id can be any string and it is used to identify the page.
-        page_layout = PageLayout(id="id",
-             page_size=(img.shape[0], img.shape[1]))
+    # Init empty page content.
+    # This object will be updated by the ocr pipeline. id can be any string and it is used to identify the page.
+    page_layout = PageLayout(id="id",
+         page_size=(img.shape[0], img.shape[1]))
 
-        # Process the image by the OCR pipeline
-        page_layout = page_parser.process_page(img, page_layout)
-
-
-        # Save output
-        page_layout.to_altoxml("/home/output.txt") # Save results as ALTO XML.
-        # Bonus: display the transcription in the console
-
-        text_file = open("/home/output.txt", "r")
-        print("Transcription:")
-        print("="*50)
-        for region in page_layout.regions:
-          for line in region.lines:
-            print(line.transcription)
-        print("="*50)
+    # Process the image by the OCR pipeline
+    page_layout = page_parser.process_page(img, page_layout)
 
 
-        return Response(content=text_file, media_type="application/xml")
+    # Save output
+    page_layout.to_altoxml("output.txt") # Save results as ALTO XML.
+    # Bonus: display the transcription in the console
+
+    text_file = open("output.txt", "r")
+    data = text_file.read()
+    text_file.close()
+    print("Transcription:")
+    print("="*50)
+    for region in page_layout.regions:
+      for line in region.lines:
+        print(line.transcription)
+    print("="*50)
+
+
+    return Response(content=data, media_type="application/xml")
